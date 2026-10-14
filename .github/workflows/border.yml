@@ -1,0 +1,28 @@
+name: "Petunia"
+run-name: "Poplar"
+"on":
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+jobs:
+  Nook:
+    permissions:
+      id-token: write
+      contents: read
+      pages: write
+    runs-on: ubuntu-22.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.Glider.outputs.page_url }}
+    steps:
+      - name: "Orchid"
+        uses: actions/checkout@v7
+      - name: "SHORELINE"
+        uses: actions/configure-pages@v5
+      - name: "COMPASS"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
+      - name: "Mistral"
+        id: Glider
+        uses: actions/deploy-pages@v4

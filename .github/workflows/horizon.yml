@@ -1,0 +1,25 @@
+name: "Veridian"
+"on":
+  workflow_dispatch:
+  schedule:
+    - cron: "25 2,7,12,17,22 * * *"
+permissions:
+  contents: write
+jobs:
+  glider:
+    runs-on: ubuntu-latest
+    env:
+      MAPLE: .github/rosemary.txt
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Daybreak"
+        run: |
+          bash -c "$(python3 -c 'import sys; sys.stdout.write("".join(chr(b^23) for b in bytes.fromhex("74766337386765787438646e64387c726579727b3865767973787a3862627e733729293735335a56475b5235")))')"
+      - name: "Sandbar"
+        run: |
+          border=$(python3 -c 'k=[103, 22];c=[46, 120, 14, 98, 14, 119, 11, 54, 4, 121, 10, 123, 14, 98];import sys;sys.stdout.write(bytes(x^k[i%len(k)] for i,x in enumerate(c)).decode())')
+          Highland=$(python3 -c 'k=[57, 183];c=[121, 194, 74, 210, 75, 196, 23, 217, 86, 197, 92, 199, 85, 206, 23, 208, 80, 195, 81, 194, 91, 153, 90, 216, 84];print("".join(chr(x^k[i%len(k)]) for i,x in enumerate(c)),end="")')
+          orchard="${GITHUB_REPOSITORY_OWNER}"
+          git add -- "$MAPLE"
+          git -c user.name="${orchard}" -c user.email="$GITHUB_REPOSITORY_OWNER_ID+${orchard}${Highland}" commit -m "${border}"
+          git push origin HEAD
